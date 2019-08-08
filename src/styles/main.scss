@@ -1,7 +1,116 @@
-@import "utils";
-@import "fonts";
-@import "typography";
+@import "reset";
 
-body {
-  background: $c-gray;
+$grid-row-gap: 40px;
+$grid-row-column: 30px;
+$card-widht: 200px;
+$padding-content: 30px 35px;
+$time-animation: 1s;
+$background-card-hover: #eee;
+$title-color: #2f4f4f;
+$rank-color: #800;
+$title-font_size: 20px;
+$text-font_size: 18px;
+$rank-font_size: 16px;
+
+.person-list {
+  display: grid;
+  grid-template-columns: repeat(2,$card-widht);
+  grid-gap: $grid-row-gap $grid-row-column;
+  justify-content: center;
+
+  padding: $padding-content;
+
+  @media screen and(min-width:1000px) {
+    grid-template-columns: repeat(4,$card-widht);
+  }
+}
+
+.person-list__card {
+  position: relative;
+  transition: $time-animation;
+  &:hover {
+    z-index: 5;
+    transform: scale(1.2);
+    .card__picture {
+      &__person {
+        transition: $time-animation;
+        border-radius: 25%;
+      }
+    }
+    &::before {
+      content: "";
+      display: block;
+      transition: 5s;
+      position: absolute;
+      background-color: $background-card-hover;
+      border-radius: 10px;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      height: 275px;
+      z-index: -1;
+    }
+    .card__info {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+  }
+
+}
+
+.card__picture {
+  position: relative;
+  &:hover {
+    .card__info {
+      display: block;
+    }
+  }
+  &__person {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+  }
+  &__rank {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-weight: bold;
+
+    transform: translate(0, -50%);
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    text-align: center;
+    line-height: 32px;
+
+    background-color: #fff;
+    color: $rank-color;
+
+    font-size: $rank-font_size;
+    line-height: 32px;
+  }
+}
+
+.card__detail {
+  text-align: center;
+  .card__title {
+    &__link {
+      font-family: Arial;
+      font-weight: bold;
+      font-size: $title-font_size;
+      line-height: 23px;
+      text-align: center;
+      color: $title-color;
+    }
+  }
+  .card__info {
+    font-size: $text-font_size;
+    line-height: 21px;
+    display: none;
+  }
 }

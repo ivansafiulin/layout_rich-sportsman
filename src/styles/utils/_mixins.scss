@@ -1,6 +1,18 @@
-@mixin hover($_property, $_toValue) {
-  transition: #{$_property} 0.3s;
+
+@mixin border-for-calendar {
+  border: $border-hickness-calendar solid $border-color-calendar;
+  border-radius: $border-radius-calendar;
+}
+
+@mixin cell-hover($background-color-property, $bottom-upper) {
+  bottom: 0;
+  transition: #{$background-color-property} 0.5s linear,
+    #{$bottom-upper} 0.5s linear;
+
   &:hover {
-    #{$_property}: $_toValue;
+    cursor: pointer;
+    position: relative;
+    #{$background-color-property}: $background-cell-hover;
+    #{$bottom-upper}: $upper-cell-hover;
   }
 }

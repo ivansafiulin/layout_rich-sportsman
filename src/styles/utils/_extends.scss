@@ -1,4 +1,6 @@
-%h1 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+%content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

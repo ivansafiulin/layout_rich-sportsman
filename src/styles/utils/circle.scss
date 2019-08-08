@@ -1,0 +1,20 @@
+$day_month: 28, 29, 30, 31;
+$name_day: mon, thu, wed, thu, fri, sat, sun;
+
+@each $day in $day_month {
+  @for $i from 1 through $day {
+    .calendar-#{$day} div:nth-child(#{$i})::after {
+      content: "#{$i}";
+    }
+
+    .calendar-#{$day} div:nth-child(#{$i}) {
+      display: block;
+    }
+  }
+}
+
+@each $day in $name_day {
+  .calendar-#{$day} div:first-child {
+    grid-column-start: index($name_day, $day);
+  }
+}
